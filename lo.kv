@@ -1,0 +1,285 @@
+<FirstWindow>:
+    name: "First"
+    GridLayout:
+        rows: 4
+        padding: 150
+        spacing: 20
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source:"login background.jpg"
+
+        BoxLayout:
+            Label:
+                text: "Create An Account As"
+                font_name:"Pacifico"
+                font_size: 45
+        BoxLayout:
+            spacing: 10
+            Button:
+                text : "As Student"
+                background_color: 0.5,0.6,0.6,1
+                on_release:
+                    root.manager.current = 'create'
+                    root.manager.transition.direction = 'left'
+            Button:
+                text : "As Administrator"
+                background_color: 0.5,0.6,0.6,1
+                on_release:
+                    root.manager.current = "administrator"
+        BoxLayout:
+            Label:
+                text: "or"
+                font_size: 25
+        BoxLayout:
+            Button:
+                background_color: 0,0,0,0
+                text : "LogIn with Existing Account"
+
+                on_release:
+                    root.manager.current = 'existing'
+
+
+<ExistingAccountWindow>:
+    name:"existing"
+    student: student
+    password:password
+    GridLayout:
+        rows: 3
+        spacing: 30
+        padding: 180
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source:'abstract.jpg'
+        BoxLayout:
+            Label:
+                text: "ID"
+                font_size: (root.width**2 + root.height**2) / 13**4
+                size_hint:  0.9, 0.8
+            TextInput:
+                id: student
+                size_hint: 0.9, 0.8
+                font_size: 24
+        BoxLayout:
+            Label:
+                text: "PASSWORD"
+                font_size: (root.width**2 + root.height**2) / 13**4
+                size_hint:  0.9, 0.8
+            TextInput:
+                id: password
+                size_hint: 0.9, 0.8
+                font_size: 24
+                password: True
+        BoxLayout:
+            Button:
+                text: "LOGIN"
+                size_hint:  0.9, 0.8
+                font_size: 25
+                background_color: 0.5,0.6,0.6,1
+                on_release:
+                    root.manager.transition.direction = 'up'
+                    root.login_btn()
+
+
+
+
+
+<AdministratorWindow>:
+    name: "administrator"
+    password: passw
+    teachers: teachers
+    namee1: namee1
+
+    GridLayout:
+        rows:5
+        padding: 100
+        spacing:30
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source:'login background2.jpg'
+        BoxLayout:
+
+            spacing:10
+            Label:
+                text: "Create an Account"
+                font_name:"Pacifico"
+                font_size: 45
+
+
+        BoxLayout:
+            spacing:10
+
+            Label:
+                font_size: (root.width**2 + root.height**2) / 13**4
+                size_hint:  0.9, 0.8
+                text: "NAME: "
+
+
+            TextInput:
+
+                font_size: 20
+                size_hint:  0.9, 0.8
+                id: namee1
+                multiline: False
+
+        BoxLayout:
+            spacing:10
+
+            Label:
+                size_hint: 0.9,0.8
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+
+                text: "TEACHERS ID: "
+
+            TextInput:
+
+                size_hint: 0.9, 0.8
+                id: teachers
+                multiline: False
+                font_size: 20
+
+        BoxLayout:
+            spacing:10
+
+            Label:
+                size_hint: 0.9,0.8
+                font_size: (root.width**2 + root.height**2) / 13**4
+
+                text: "PASSWORD: "
+
+            TextInput:
+
+                size_hint: 0.9, 0.8
+                font_size: 24
+
+                id:passw
+                multiline: False
+                password: True
+
+        BoxLayout:
+            spacing:10
+            Button:
+                size_hint:  0.9, 0.8
+                font_size: 25
+                text: "Create"
+                font_name: "Pacifico"
+                on_release:
+                    root.manager.transition.direction = "up"
+                    root.submit1()
+
+
+
+
+<CreateAccountWindow>:
+    name: "create"
+
+    namee: namee
+    student: student
+    password: passw
+    canvas:
+        Rectangle:
+            size: self.size
+            pos:self.pos
+            source: "login background1.jpg"
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+                font_name:"Pacifico"
+
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8}
+                text: "NAME:"
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13}
+                text: "STUDENT ID: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13}
+                size_hint: 0.4, 0.12
+                id: student
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8-0.13*2}
+                text: "PASSWORD: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8-0.13*2}
+                size_hint: 0.4, 0.12
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            background_color: 0.5,0.6,0.6,1
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.submit()
+
+
+<UploadWindow>:
+    name: "upload"
+    GridLayout:
+        rows:1
+        BoxLayout:
+            Label:
+                text:'TEACHERS ACCOUNT IS CREATED'
+                font_size: 40
+
+
+<ViewWindow>:
+    name:"View"
+    GridLayout:
+        rows: 1
+        BoxLayout:
+            Label:
+                text: 'STUDENT ACCOUNT CREATED'
+                font_size: 40
+
+
+
+
+
+
+
+
